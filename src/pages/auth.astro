@@ -1,0 +1,77 @@
+---
+import ButtonChat from "@/components/ButtonChat.astro";
+import ButtonGoogle from "@/components/ButtonGoogle.astro";
+import ButtonSend from "@/components/ButtonSend.astro";
+import Header from "@/components/Header.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getSession } from "auth-astro/server";
+const session = await getSession(Astro.request);
+---
+
+<Layout title="Iniciar sesión en Deache Chat">
+    <Header />
+    <main class="flex flex-col justify-center items-center mt-2">
+        <div class="content-center m-5 p-3 text-center">
+            <img src="logo.svg" alt="logo" class="w-[100px]" />
+            <h1 class="text-[#49BC97] mt-4 font-bold text-xl">DEACHE CHAT</h1>
+        </div>
+        {
+            session ? (
+                <>
+                    <ButtonChat
+                        text="Ir a mi chat"
+                        class="bg-[#49BC97] px-6 py-3 rounded-lg hover:bg-[#3A9478] font-semibold text-white"
+                        href="/chat"
+                    />
+                </>
+            ) : (
+                <>
+                    <form
+                        action="/api/emails/send"
+                        method="post"
+                        class="flex flex-col mx-auto w-[350px] h-auto gap-3 mt-3"
+                    >
+                        <div class="">
+                            <input
+                                class="p-3 rounded-lg w-full border-gray-300 border dark:bg-slate-800 dark:border-gray-500"
+                                type="email"
+                                name="email"
+                                id="email"
+                                required
+                                placeholder="Ingresar tu correo institucional"
+                            />
+                        </div>
+                        <ButtonSend
+                            type="submit"
+                            text="Continuar con email"
+                            class="bg-[#49BC97] px-6 py-3 rounded-lg hover:bg-[#3A9478] font-semibold text-white"
+                            id="send"
+                        />
+                    </form>
+                    <p class="font-light mt-3">O</p>
+                    <div class="content-center mt-3 w-[350px]">
+                        <ButtonGoogle
+                            id="login"
+                            text="Continuar con Google"
+                            class="dark:bg-slate-800 dark:text-white"
+                        />
+                    </div>
+                </>
+            )
+        }
+    </main>
+</Layout>
+
+<script>
+    import { $ } from "@/lib/dom-selector";
+
+    const { signIn } = await import("auth-astro/client");
+
+    const $login = $("#login");
+    const $email = $("#email");
+    
+    if ($login)
+        $login.onclick = (e) => {
+            signIn("google");
+        };
+</script>

@@ -1,0 +1,13 @@
+---
+import GoogleIcon from "../icons/GoogleIcon.astro";
+
+const props = Astro.props;
+---
+
+<button
+    class=`${props.class } flex w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base content-center text-center items-center justify-center gap-3`
+    id={props.id}
+>
+    <GoogleIcon />
+    {props.text}</button
+>

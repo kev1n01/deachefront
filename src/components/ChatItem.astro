@@ -1,0 +1,28 @@
+---
+const props = Astro.props;
+import DotsIcon from "@/icons/DotsIcon.astro";
+---
+
+<div
+    class="chat-item p-4 bg-slate-200 hover:bg-slate-300 text-slate-700 dark:text-white dark:hover:bg-slate-700 dark:bg-slate-900 flex gap-6 justify-between rounded-xl content-center items-center"
+>
+    <div class="flex gap-5 justify-between">
+        <img
+            src={props.src}
+            alt="img_chat"
+            class="w-6 rounded-full object-cover"
+        />
+        <div>
+            <h4 class="font-bold text-sm">{props.name}</h4>
+            <p class="font-normal text-xs">{props.description}</p>
+        </div>
+    </div>
+
+    <div
+        class="rounded-lg bg-white dark:bg-slate-800 dark:text-white text-slate-900"
+    >
+        <button class="flex gap-5 items-center p-2">
+            <DotsIcon class="text-xs text-[#2B9F69] dark:text-white" />
+        </button>
+    </div>
+</div>

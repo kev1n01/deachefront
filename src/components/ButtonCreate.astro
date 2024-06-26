@@ -1,0 +1,10 @@
+---
+const props = Astro.props;
+---
+
+<button
+    class="flex items-center justify-center gap-3 bg-[#E1FFF1] w-full rounded-xl p-2 text-[#2B9F69] hover:bg-[#bedacd] text-sm font-semibold"
+>
+    <slot />
+    {props.text}
+</button>

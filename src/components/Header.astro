@@ -1,0 +1,132 @@
+---
+import { getSession } from "auth-astro/server";
+import ArrowIcon from "../icons/ArrowIcon.astro";
+
+const session = await getSession(Astro.request);
+
+var status_session = "hidden";
+
+session != null ? (status_session = "relative") : (status_session = "hidden");
+---
+
+<header class="bg-[#ffffff] dark:bg-transparent text-[#242424] dark:text-white">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+        <div class="text-2xl font-bold xs:text-lg">
+            <a href="/">
+                <img src="logo.svg" alt="Logo" class="h-11 inline-block mr-2" />
+                DEACHE CHAT
+            </a>
+        </div>
+        <!-- <nav>
+            <ul class="flex space-x-4">
+                <li><a href="#" class="hover:text-gray-300">Inicio</a></li>
+                <li><a href="#" class="hover:text-gray-300">Contacto</a></li>
+            </ul>
+        </nav> -->
+        <div class="flex gap-3">
+            <button
+                id="toogle"
+                class="ml-4 p-2 bg-gray-100 dark:bg-transparent text-gray-900 rounded-full"
+                >🌙
+            </button>
+
+            <div class=`${status_session} content-center` id="user_info">
+                <button class="content-center flex" id="menu_button">
+                    <p >
+                        Hola!
+                        <span class="text-[#49BC97] font-semibold">
+                            {session?.user?.name}
+                        </span>
+                    </p>
+                    <ArrowIcon
+                        class="-mr-1 h-5 w-5 text-gray-400 rotate-180"
+                        id="arrow"
+                    />
+                </button>
+                <div
+                    class="hidden right-0 z-10 mt-4 w-56 origin-top-right rounded-md bg-white dark:bg-slate-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    id="dropdown"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="menu-button"
+                    tabindex="-1"
+                >
+                    <div class="py-1" role="none">
+                        <a
+                            href="/profile"
+                            class="text-gray-700 block px-4 py-2 text-sm dark:text-white hover:bg-slate-200 dark:hover:bg-slate-600"
+                            role="menuitem"
+                            tabindex="-1"
+                            id="menu-item-0"
+                        >
+                            Ver mi perfil
+                        </a>
+                        <button
+                            id="logout"
+                            class="text-gray-700 block w-full px-4 py-2 text-left text-sm dark:text-white hover:bg-slate-200 dark:hover:bg-slate-600"
+                        >
+                            Cerrar sesión
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    import { $ } from "@/lib/dom-selector";
+    const { signOut } = await import("auth-astro/client");
+
+    const $toogle = $("#toogle");
+    const $user_info = $("#user_info");
+
+    $toogle.onclick = () => change_theme();
+
+    function change_theme() {
+        const html = document.documentElement;
+        if (html.classList.contains("dark")) {
+            html.classList.remove("dark");
+            localStorage.setItem("theme", "light");
+            $toogle.innerHTML = "☀️";
+        } else {
+            html.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+            $toogle.innerHTML = "🌙";
+        }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("theme") === "dark") {
+            document.documentElement.classList.add("dark");
+            $toogle.innerHTML = "🌙";
+        } else {
+            document.documentElement.classList.remove("dark");
+            document.documentElement.classList.add("light");
+            $toogle.innerHTML = "☀️";
+        }
+    });
+
+    const $logout = $("#logout");
+    if ($logout) $logout.onclick = () => signOut();
+
+    if ($user_info?.classList.contains("relative")) {
+        const $dropdown = $("#dropdown");
+        const $arrow = $("#arrow");
+        const $menu_button = $("#menu_button");
+
+        if ($menu_button != null) {
+            $menu_button.onclick = () => {
+                if ($dropdown?.classList.contains("hidden")) {
+                    $dropdown.classList.remove("hidden");
+                    $dropdown.classList.add("absolute");
+                    $arrow?.classList.remove("rotate-180");
+                } else {
+                    $dropdown?.classList.remove("absolute");
+                    $dropdown?.classList.add("hidden");
+                    $arrow?.classList.add("rotate-180");
+                }
+            };
+        }
+    }
+</script>
