@@ -68,10 +68,9 @@ const session = await getSession(Astro.request);
     const { signIn } = await import("auth-astro/client");
 
     const $login = $("#login");
-    const $email = $("#email");
     
     if ($login)
-        $login.onclick = (e) => {
+        $login.onclick = () => {
             signIn("google");
         };
 </script>

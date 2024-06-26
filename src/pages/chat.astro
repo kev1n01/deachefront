@@ -2,7 +2,6 @@
 import BoxMessage from "@/components/BoxMessage.astro";
 import ButtonCreate from "@/components/ButtonCreate.astro";
 import ChatItem from "@/components/ChatItem.astro";
-import Header from "@/components/Header.astro";
 import DotsIcon from "@/icons/DotsIcon.astro";
 import MessageIcon from "@/icons/MessageIcon.astro";
 import MicrophoneIcon from "@/icons/MicrophoneIcon.astro";
@@ -14,11 +13,9 @@ import Layout from "@/layouts/Layout.astro";
 import { getSession } from "auth-astro/server";
 const session = await getSession(Astro.request);
 if (session == null) return Astro.redirect("/auth");
-const iduser = session.user?.id;
 ---
 
 <Layout title=`Chats de ${session?.user?.name }` classs="p-2">
-    <!-- <Header /> -->
     <div id="app" class="relative h-screen gap-2 xs:pr-0">
         <aside
             class="[grid-area:aside] p-1 flex flex-col h-full xs:hidden sm:flex"

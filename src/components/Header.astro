@@ -32,7 +32,7 @@ session != null ? (status_session = "relative") : (status_session = "hidden");
 
             <div class=`${status_session} content-center` id="user_info">
                 <button class="content-center flex" id="menu_button">
-                    <p >
+                    <p>
                         Hola!
                         <span class="text-[#49BC97] font-semibold">
                             {session?.user?.name}
@@ -81,29 +81,39 @@ session != null ? (status_session = "relative") : (status_session = "hidden");
     const $toogle = $("#toogle");
     const $user_info = $("#user_info");
 
-    $toogle.onclick = () => change_theme();
+    if ($toogle) {
+        $toogle.onclick = () => change_theme();
+    }
 
     function change_theme() {
         const html = document.documentElement;
         if (html.classList.contains("dark")) {
             html.classList.remove("dark");
             localStorage.setItem("theme", "light");
-            $toogle.innerHTML = "☀️";
+            if ($toogle) {
+                $toogle.innerHTML = "☀️";
+            }
         } else {
             html.classList.add("dark");
             localStorage.setItem("theme", "dark");
-            $toogle.innerHTML = "🌙";
+            if ($toogle) {
+                $toogle.innerHTML = "🌙";
+            }
         }
     }
 
     window.addEventListener("DOMContentLoaded", () => {
         if (localStorage.getItem("theme") === "dark") {
             document.documentElement.classList.add("dark");
-            $toogle.innerHTML = "🌙";
+            if ($toogle) {
+                $toogle.innerHTML = "🌙";
+            }
         } else {
             document.documentElement.classList.remove("dark");
             document.documentElement.classList.add("light");
-            $toogle.innerHTML = "☀️";
+            if ($toogle) {
+                $toogle.innerHTML = "☀️";
+            }
         }
     });
 
