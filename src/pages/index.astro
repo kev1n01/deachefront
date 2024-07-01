@@ -8,16 +8,16 @@ const session = await getSession(Astro.request);
 
 <Layout title="Bienvenido a Deache Chat">
 	<Header />
-	<main class="flex items-center justify-center h-auto">
+	<main class="flex items-center justify-center h-auto w-full">
 		<div
-			class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+			class="container px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center content-center w-full"
 		>
-			<div class="text-center md:text-left ">
-				<h1 class="text-6xl font-bold mb-6 text-[#24d0d6] uppercase leading-snug">
+			<div class="text-center md:text-left">
+				<h1 class="md:text-6xl lg:text-6xl font-bold mb-6 text-[#24d0d6] uppercase lg:leading-snug md:leading-snug xs:leading-snug  xs:text-3xl">
 					¡Bienvenido al Chat bot de la Universidad de Huánuco!
 				</h1>
 				<p
-					class="text-lg mb-8 text-gray-700 dark:text-gray-300 text-wrap w-96 font-semibold"
+					class="md:text-lg  lg:text-lg mb-8 text-gray-700 dark:text-gray-300 text-wrap lg:w-96  md:w-96 xs:w-80 font-semibold xs:text-base"
 				>
 					Tu asistente virtual para todas las consultas y dudas
 					universitarias que tengas.
