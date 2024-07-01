@@ -2,7 +2,6 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import { getSession } from "auth-astro/server";
-import HeroImage from "@/components/HeroImage.astro";
 import ButtonChat from "@/components/ButtonChat.astro";
 const session = await getSession(Astro.request);
 ---
@@ -13,36 +12,24 @@ const session = await getSession(Astro.request);
 		<div
 			class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
 		>
-			<div class="text-center md:text-left">
-				<h1
-					class="text-4xl font-bold mb-6 text-[#49BC97] dark:text-[#49BC97] uppercase"
-				>
-					¡Bienvenido al Chatbot Universitario!
+			<div class="text-center md:text-left ">
+				<h1 class="text-6xl font-bold mb-6 text-[#24d0d6] uppercase leading-snug">
+					¡Bienvenido al Chat bot de la Universidad de Huánuco!
 				</h1>
 				<p
-					class="text-lg mb-8 text-gray-700 dark:text-gray-300 text-wrap w-80"
+					class="text-lg mb-8 text-gray-700 dark:text-gray-300 text-wrap w-96 font-semibold"
 				>
 					Tu asistente virtual para todas las consultas y dudas
 					universitarias que tengas.
 				</p>
-				{
-					session ? (
-						<ButtonChat
-							text="Ir a mi chat"
-							class="bg-[#49BC97] text-white px-6 py-3 rounded-lg shadow hover:bg-[#3A9478] font-semibold dark:text-slate-800"
-							href="/chat"
-						/>
-					) : (
-						<ButtonChat
-							text="Quiero Comenzar!"
-							class="bg-[#49BC97] text-white px-6 py-3 rounded-lg shadow hover:bg-[#3A9478] font-semibold dark:text-slate-800"
-							href="/auth"
-						/>
-					)
-				}
+				<ButtonChat
+					text="Quiero comenzar"
+					class="bg-[#25b8bd] text-gray-100 px-6 py-3 rounded-lg shadow hover:bg-[#2aacb1] font-bold"
+					href="https://deache.streamlit.app/"
+				/>
 			</div>
 			<div class="flex justify-center md:justify-end">
-				<HeroImage class:list={"bg-slate-200 rounded-lg"} />
+				<img src="real_leon.png" alt="real_leon2" class="w-full" />
 			</div>
 		</div>
 	</main>
