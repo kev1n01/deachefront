@@ -8,12 +8,12 @@ const session = await getSession(Astro.request);
 
 <Layout title="Bienvenido a Deache Chat">
 	<Header />
-	<main class="flex items-center justify-center h-auto w-full">
+	<main class="flex items-center justify-center w-full">
 		<div
 			class="container px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center content-center w-full"
 		>
 			<div class="text-center md:text-left">
-				<h1 class="md:text-6xl lg:text-6xl font-bold mb-6 text-[#24d0d6] uppercase lg:leading-snug md:leading-snug xs:leading-snug  xs:text-3xl">
+				<h1 class="md:text-6xl lg:text-5xl font-bold mb-6 text-[#24d0d6] uppercase sm:leading-normal lg:leading-snug md:leading-snug xs:leading-snug  xs:text-3xl">
 					¡Bienvenido al Chat bot de la Universidad de Huánuco!
 				</h1>
 				<p
@@ -23,13 +23,13 @@ const session = await getSession(Astro.request);
 					universitarias que tengas.
 				</p>
 				<ButtonChat
-					text="Quiero comenzar"
-					class="bg-[#25b8bd] text-gray-100 px-6 py-3 rounded-lg shadow hover:bg-[#2aacb1] font-bold"
+					text="Ingresar"
+					class="bg-[#127f83] text-gray-100 px-6 py-3 rounded-lg shadow hover:bg-[#186769] font-bold"
 					href="https://deache.streamlit.app/"
 				/>
 			</div>
 			<div class="flex justify-center md:justify-end">
-				<img src="real_leon.png" alt="real_leon2" class="w-full" />
+				<img src="real_leon.png" alt="real_leon2" class="w-[500px] " />
 			</div>
 		</div>
 	</main>
